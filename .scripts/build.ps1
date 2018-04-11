@@ -49,9 +49,9 @@ if (-not $env:CI) {
     (Get-Module $Manifest.ModuleName -ListAvailable -Refresh).ModuleBase | Remove-Item -Recurse -Force -ErrorAction 'SilentlyContinue'
 }
 
-Write-Verbose "[BUILD] Properties Keys: $($Properties.Keys -join ', ')" -Verbose
-Write-Verbose "[BUILD] Properties.SkipBootstrap: $($Properties.SkipBootstrap)" -Verbose
-Write-Verbose "[BUILD] DependsBootstrap: ${script:DependsBootstrap}" -Verbose
+Write-Verbose "[BUILD] Properties Keys: $($Properties.Keys -join ', ')"
+Write-Verbose "[BUILD] Properties.SkipBootstrap: $($Properties.SkipBootstrap)"
+Write-Verbose "[BUILD] DependsBootstrap: ${script:DependsBootstrap}"
 
 
 # Parameters:
@@ -119,9 +119,9 @@ Task Bootstrap -Description "Bootstrap & Run PSDepend" {
 
 <#
     Preperation and Setup:
-        - Import Manifest.json to create the PDS1 file.
         - Modify Manifest information; keeping purged information.
         - Establish Module/Resource Locations/Paths.
+        - Create the PSD1 files from Manifest.
 #>
 Task SetupModule -Description "Prepare and Setup Module" -Depends $DependsBootstrap {
     $dir = New-Item -ItemType 'Directory' -Path $script:ResourceModulePath -Force
@@ -151,7 +151,6 @@ Task SetupModule -Description "Prepare and Setup Module" -Depends $DependsBootst
 
 <#
     Put Module/Resource in locations accessible by DSC:
-        - Create the PSD1 files from Manifest.
         - Copy PSM1 to location.
         - Copy Module to System Location; for testing.
 #>

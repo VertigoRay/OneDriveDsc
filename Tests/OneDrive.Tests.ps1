@@ -60,7 +60,10 @@ function Invoke-DscCleanup
 }
 
 Describe $thisModuleName {
-    # AfterEach { Start-Sleep -Seconds 5 }
+    AfterEach {
+        # Slow things down a little to help prevent build failures that work after a retry.
+        Start-Sleep -Seconds 1
+    }
 
 
 
