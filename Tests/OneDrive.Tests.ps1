@@ -114,11 +114,11 @@ Describe $thisModuleName {
         }
 
         It 'DscResource Version Major' {
-            (Get-DscResource $Manifest.ResourceName -ErrorAction 'SilentlyContinue').Version.Major | Should Be $(& "${PSScriptRootParent}\.scripts\version.ps1").Major
+            (Get-DscResource $Manifest.ResourceName -ErrorAction 'SilentlyContinue').Version.Major | Should Be $(& "${PSScriptRootParent}\.build\version.ps1").Major
         }
 
         It 'DscResource Version Minor' {
-            (Get-DscResource $Manifest.ResourceName -ErrorAction 'SilentlyContinue').Version.Minor | Should Be $(& "${PSScriptRootParent}\.scripts\version.ps1").Minor
+            (Get-DscResource $Manifest.ResourceName -ErrorAction 'SilentlyContinue').Version.Minor | Should Be $(& "${PSScriptRootParent}\.build\version.ps1").Minor
         }
     }
 

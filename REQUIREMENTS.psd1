@@ -6,7 +6,7 @@
 @{
     'Prep'       = @{
         DependencyType = 'task'
-        Target = '$PWD\.scripts\requirements.prep.ps1'
+        Target = '$PWD\.build\requirements.prep.ps1'
         DependsOn = @('powershell-yaml')
     }
     'Pester'            = 'latest'  # Tested with: 4.3.1
@@ -16,7 +16,7 @@
     'PSScriptAnalyzer'  = 'latest'  # Tested with: 1.11.0
     'CodeCovIo.psm1' = @{
         DependencyType = 'FileDownload'
-        Source = 'https://raw.githubusercontent.com/aaronpowell/ps-nvm/bf4ca1953b250c11887a36464de566794947afb1/.scripts/CodeCovIo.psm1'
+        Source = 'https://raw.githubusercontent.com/aaronpowell/ps-nvm/bf4ca1953b250c11887a36464de566794947afb1/.build/CodeCovIo.psm1'
         Target = '$PWD\.temp\CodeCovIo.psm1'
         DependsOn = @('Prep')
     }
@@ -28,7 +28,7 @@
     }
     'Codecov'       = @{
         DependencyType = 'task'
-        Target = '$PWD\.scripts\requirements.codecov.ps1'
+        Target = '$PWD\.build\requirements.codecov.ps1'
         DependsOn = @('Codecov.zip', 'CodeCovIo.psm1')
     }
 }

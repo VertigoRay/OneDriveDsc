@@ -25,7 +25,7 @@ install:
 
 
 build_script:
-- ps: Invoke-psake '.\.scripts\build.ps1' -Properties @{'SkipBootStrap' = $true}
+- ps: Invoke-psake '.\.build\build.ps1' -Properties @{'SkipBootStrap' = $true}
 
 
 
@@ -66,5 +66,5 @@ deploy_script:
     Write-Host "[AppVeyor] APPVEYOR_REPO_TAG: ${env:APPVEYOR_REPO_TAG}" -Foregroundcolor 'Blue' -BackgroundColor 'Magenta'
     if ($env:APPVEYOR_REPO_TAG -eq 'true')
     {
-        Invoke-PSDeploy -Path '.\.scripts\deploy.ps1' -Force
+        Invoke-PSDeploy -Path '.\.build\deploy.ps1' -Force
     }

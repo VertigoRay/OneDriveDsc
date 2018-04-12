@@ -76,7 +76,7 @@ Properties {
     $PSModulePath1 = $env:PSModulePath.Split(';')[1]
     $script:SystemModuleLocation = "${PSModulePath1}\${script:Manifest_ModuleName}"
 
-    $script:Version = [string](& "${PSScriptRootParent}\.scripts\version.ps1")
+    $script:Version = [string](& "${PSScriptRootParent}\.build\version.ps1")
 }
 
 
