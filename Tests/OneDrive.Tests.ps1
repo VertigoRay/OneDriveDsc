@@ -62,7 +62,14 @@ function Invoke-DscCleanup
 Describe $thisModuleName {
     AfterEach {
         # Slow things down a little to help prevent build failures that work after a retry.
-        Start-Sleep -Seconds 1
+        if ($env:CI)
+        {
+            Start-Sleep -Seconds 5
+        }
+        else
+        {
+            Start-Sleep -Seconds 1
+        }
     }
 
 
